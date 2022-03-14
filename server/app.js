@@ -1,5 +1,6 @@
 const express = require("express");
 const models = require("./models");
+const sequelize = require("sequelize");
 var bcrypt = require("bcryptjs");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
