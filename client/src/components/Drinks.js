@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import styles from './drinks.module.css'
 
 function Drinks() {
     const [drink, setDrink] =useState({})
@@ -25,7 +26,7 @@ function Drinks() {
     }
     
     return (
-      <div>
+      <div className={styles.drinkContainer}>
         <h1>Add Drinks</h1>
         <input type="text" onChange={handleTextChange} name="name" />
         <input type="text" onChange={handleTextChange} name="imgUrl" />

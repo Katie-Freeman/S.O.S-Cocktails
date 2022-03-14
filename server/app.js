@@ -1,15 +1,22 @@
 const express = require("express");
+const path = require("path");
 const models = require("./models");
 const sequelize = require("sequelize");
 var bcrypt = require("bcryptjs");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const publicPath = path.join(__dirname, "..", "public");
 const app = express();
 
 require("dotenv").config();
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static(publicPath));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
+});
 
 app.post("/register", (req, res) => {
   const username = req.body.username;
