@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styles from "./login.module.css";
 
 function Login(props) {
   const [user, setUser] = useState({});
@@ -36,7 +37,7 @@ function Login(props) {
   };
 
   return (
-    <div className="login container">
+    <div className={styles.loginContainer}>
       <h1>Login</h1>
       <input
         type="text"

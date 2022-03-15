@@ -12,6 +12,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Drinks from "./components/Drinks";
+import Ingredients from "./components/Ingredients";
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -30,6 +32,7 @@ ReactDOM.render(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/drinks" element={<Drinks />} />
+            <Route path="/ingredients" element={<Ingredients />} />
           </Routes>
         </BaseLayout>
       </BrowserRouter>

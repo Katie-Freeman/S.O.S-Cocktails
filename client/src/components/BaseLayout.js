@@ -5,7 +5,7 @@ function BaseLayout(props) {
   return (
     <div className={styles.baseLayoutContainer}>
       <Menu />
-      <img src= 'images/Logo.png'/>
+      <img className={styles.logo} src={require("../images/Logo.png")} />
       {props.children}
     </div>
   );

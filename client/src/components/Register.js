@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./register.module.css";
 
 function Register(props) {
   const [user, setUser] = useState({});
@@ -24,7 +25,7 @@ function Register(props) {
   };
 
   return (
-    <div className="register container">
+    <div className={styles.registerContainer}>
       <h1>Register</h1>
       <input
         type="text"
