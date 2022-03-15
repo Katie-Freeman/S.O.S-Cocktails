@@ -1,13 +1,23 @@
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import styles from "./menu.module.css";
 
 function Menu(props) {
   return (
-    <div>
-      <NavLink to="/profile">Home</NavLink>
-      <NavLink to="/ingredients">Ingredients</NavLink>
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/register">Register</NavLink>
+    <div className={styles.menuContainer}>
+      <div className={styles.menuOptions}>
+        {" "}
+        <NavLink to="/profile">Home</NavLink>
+      </div>
+      <div className={styles.menuOptions}>
+        <NavLink to="/ingredients">Ingredients</NavLink>
+      </div>
+      <div className={styles.menuOptions}>
+        <NavLink to="/login">Login</NavLink>
+      </div>
+      <div className={styles.menuOptions}>
+        <NavLink to="/register">Register</NavLink>
+      </div>
     </div>
   );
 }

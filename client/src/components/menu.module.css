@@ -1,0 +1,14 @@
+.menuContainer {
+    background-color: #ebe6de;
+    display: flex;
+    
+    
+}
+
+.menuOptions {
+    padding-right: 3em;
+}
+
+.menuOptions a {
+    color: #59511e;
+}

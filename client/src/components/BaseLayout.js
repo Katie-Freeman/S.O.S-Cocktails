@@ -1,10 +1,11 @@
 import Menu from "./Menu";
+import styles from './baseLayout.module.css'
 
 function BaseLayout(props) {
   return (
-    <div>
+    <div className={styles.baseLayoutContainer}>
       <Menu />
-      <h1>BaseLayout</h1>
+      <img src= 'images/Logo.png'/>
       {props.children}
     </div>
   );
