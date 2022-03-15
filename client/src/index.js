@@ -13,6 +13,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Drinks from "./components/Drinks";
 import Ingredients from "./components/Ingredients";
+import Profile from "./components/Profile";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -33,6 +34,7 @@ ReactDOM.render(
             <Route path="/register" element={<Register />} />
             <Route path="/drinks" element={<Drinks />} />
             <Route path="/ingredients" element={<Ingredients />} />
+            <Route path="/users" element={<Profile />} />
           </Routes>
         </BaseLayout>
       </BrowserRouter>

@@ -9,3 +9,12 @@ export const fetchDrink = () => {
       });
   };
 };
+
+export const deleteIngredent = (userId) => {
+  return (dispatch) => {
+    fetch(`http://localhost:8080/users/${userId}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+  };
+};

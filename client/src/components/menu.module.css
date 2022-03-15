@@ -1,14 +1,26 @@
 .menuContainer {
     background-color: #ebe6de;
     display: flex;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 600;
+    margin-top: 2em;
+    justify-content: center;
+    
     
     
 }
 
 .menuOptions {
-    margin: 0 20px 0px 10px;
+    margin: 0 20px 0px 20px;
+    
 }
 
 .menuOptions a {
     color: #59511e;
+    font-size: large;
+    text-align: center;
+}
+
+.logo {
+ width: 80px;
 }

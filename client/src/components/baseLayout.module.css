@@ -1,9 +1,13 @@
 .baseLayoutContainer {
+    display: flex;
+    flex-direction: column;
     background-color: #ebe6de;
     color: #966345;
+    align-items: center;
+   
 }
 
 .logo {
     width:300px;
-    margin-left: 20px;
+    
 }

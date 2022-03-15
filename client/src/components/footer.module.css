@@ -1,0 +1,15 @@
+.footerContainer {
+padding: 0;
+}
+
+.footer {
+background-color:#ebe6de;
+position: fixed;
+width: 100%;
+bottom: 0;
+}
+
+.footer a {
+    color: #59511e;
+    font-size: 25px; 
+}

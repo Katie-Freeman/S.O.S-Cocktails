@@ -30,11 +30,34 @@ function Login(props) {
           localStorage.setItem("username", user.username);
           localStorage.setItem("jsonwebtoken", token);
           props.onLogin(token);
-          navigate("/");
+          navigate("/users");
         } else {
         }
       });
-  };
+    }
+    // const handleGuestLogin = () => {
+    //   // const guestUser = guestuser
+    //   // const guestPassword = GuestPassword
+    //   fetch("http://localhost:8080/login", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(user),
+    //   })
+    //     .then((response) => response.json())
+    //     .then((result) => {
+    //       console.log("LOGING IN", result);
+    //       if (result.success) {
+    //         const token = result.token;
+    //         localStorage.setItem("username", user.username);
+    //         localStorage.setItem("jsonwebtoken", token);
+    //         props.onLogin(token);
+    //         navigate("/");
+    //       } else {
+    //       }
+    //     });
+    //   }
 
   return (
     <div className={styles.loginContainer}>
@@ -52,6 +75,7 @@ function Login(props) {
         name="password"
       />
       <button onClick={handleLogin}>Login</button>
+      {/* <button onClick={handleGuestLogin}>Guest Login</button> */}
     </div>
   );
 }
