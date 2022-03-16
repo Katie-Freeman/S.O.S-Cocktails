@@ -1,12 +1,12 @@
 const express = require("express");
 const path = require("path");
 const models = require("./models");
-const sequelize = require("sequelize");
 var bcrypt = require("bcryptjs");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const publicPath = path.join(__dirname, "..", "public");
 const app = express();
+const sequelize = require("sequelize");
 
 require("dotenv").config();
 
@@ -66,7 +66,7 @@ app.post("/login", (req, res) => {
         if (result) {
           const token = jwt.sign({ username: user.username }, "SECRETKEY");
 
-          res.json({ success: true, token: token });
+          res.json({ success: true, user: user, token: token });
         } else {
           res.json({ success: false, message: "Not authenticated!" });
         }
@@ -77,24 +77,24 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.post('/drinks', (req, res) => {
-    const name= req.body.name
-    const imgUrl = req.body.imgUrl
-    const recipe = req.body.recipe
+app.post("/drinks", (req, res) => {
+  const name = req.body.name;
+  const imgUrl = req.body.imgUrl;
+  const recipe = req.body.recipe;
 
-    const drink = models.Drink.build({
-        name:name,
-        imageUrl:imgUrl,
-        recipe:recipe
+  const drink = models.Drink.build({
+    name: name,
+    imageUrl: imgUrl,
+    recipe: recipe,
+  });
+
+  drink
+    .save()
+    .then((_) => {
+      res.json({ success: true, message: "Drink Saved!" });
     })
-
-    drink
-      .save()
-      .then((_) => {
-        res.json({ success: true, message: "Drink Saved!" });
-      })
-      .catch((error) => res.json({ success: false, message: error }));
-})
+    .catch((error) => res.json({ success: false, message: error }));
+});
 
 app.post("/ingredients", (req, res) => {
   const name = req.body.name;
@@ -111,6 +111,75 @@ app.post("/ingredients", (req, res) => {
       res.json({ success: true, message: "Ingredient added!" });
     })
     .catch((error) => res.json({ success: false, message: error }));
+});
+
+app.post("/ingredients/search", (req, res) => {
+  let query = req.body.query.toLowerCase();
+
+  models.Ingredient.findAll({
+    limit: 10,
+    where: {
+      name: sequelize.where(
+        sequelize.fn("LOWER", sequelize.col("name")),
+        "LIKE",
+        "%" + query + "%"
+      ),
+    },
+  })
+    .then(function (matches) {
+      return res.json({
+        msg: "message",
+        matches,
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+app.post("/users/:id/ingredients", (req, res) => {
+  const { id } = req.params;
+
+  models.User.findByPk(id)
+    .then(async (user) => {
+      const userIngredients = await user.getIngredients();
+      return res.json(userIngredients);
+    })
+    .catch((error) => console.log(error));
+});
+
+app.post("/users/:id/add-ingredients", (req, res) => {
+  const { id } = req.params;
+  const { ingredientId } = req.body;
+
+  models.User.findByPk(id)
+    .then(async (user) => {
+      const added = await user.addIngredients([ingredientId]);
+      if (added) {
+        const ingredients = await user.getIngredients();
+        return res.json({ ingredients });
+      } else {
+        return res.json({ error: "Could not add ingredient" });
+      }
+    })
+    .catch((error) => res.json(error));
+});
+
+app.delete("/users/:id/ingredients", (req, res) => {
+  const { id } = req.params;
+  const { ingredientId } = req.body;
+
+  models.User.findByPk(id)
+    .then(async (user) => {
+      const success = await user.removeIngredients([ingredientId]);
+      if (success) {
+        const ingredients = await user.getIngredients();
+        return res.json({ ingredients });
+      } else {
+        return res.json({ error: "Could not add ingredient" });
+      }
+    })
+    .catch((error) => res.json(error));
 });
 
 app.listen(8080, () => {

@@ -14,7 +14,7 @@ const reducer = (state = initialState, action) => {
     case "DRINKS_FETCHED":
       return {
         ...state,
-        books: action.payload,
+        drinks: action.payload,
       };
     default:
       return state;

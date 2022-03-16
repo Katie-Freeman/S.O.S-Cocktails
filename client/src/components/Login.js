@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import styles from "./login.module.css";
 
 function Login(props) {
   const [user, setUser] = useState({});
@@ -27,40 +26,19 @@ function Login(props) {
         console.log("LOGING IN", result);
         if (result.success) {
           const token = result.token;
+          console.log("USER", user);
           localStorage.setItem("username", user.username);
+          localStorage.setItem("userId", result.user.id);
           localStorage.setItem("jsonwebtoken", token);
           props.onLogin(token);
-          navigate("/users");
+          navigate("/");
         } else {
         }
       });
-    }
-    // const handleGuestLogin = () => {
-    //   // const guestUser = guestuser
-    //   // const guestPassword = GuestPassword
-    //   fetch("http://localhost:8080/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(user),
-    //   })
-    //     .then((response) => response.json())
-    //     .then((result) => {
-    //       console.log("LOGING IN", result);
-    //       if (result.success) {
-    //         const token = result.token;
-    //         localStorage.setItem("username", user.username);
-    //         localStorage.setItem("jsonwebtoken", token);
-    //         props.onLogin(token);
-    //         navigate("/");
-    //       } else {
-    //       }
-    //     });
-    //   }
+  };
 
   return (
-    <div className={styles.loginContainer}>
+    <div className="login container">
       <h1>Login</h1>
       <input
         type="text"
@@ -75,7 +53,6 @@ function Login(props) {
         name="password"
       />
       <button onClick={handleLogin}>Login</button>
-      {/* <button onClick={handleGuestLogin}>Guest Login</button> */}
     </div>
   );
 }
