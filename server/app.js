@@ -182,6 +182,15 @@ app.delete("/users/:id/ingredients", (req, res) => {
     .catch((error) => res.json(error));
 });
 
+app.post('/users/:id/recommendations', async (req, res) => {
+  const { id } = req.params;
+
+  const user = await models.User.findByPk(id)
+  const ingredients = await user.getIngredients();
+
+
+})
+
 app.listen(8080, () => {
   console.log("Server is running ....");
 });

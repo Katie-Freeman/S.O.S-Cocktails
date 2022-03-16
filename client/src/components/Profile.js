@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useParams, NavLink, useResolvedPath } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import * as actionCreators from "../store/creator/actionCreator";
 
 function Profile(props) {
@@ -16,8 +16,8 @@ function Profile(props) {
     fetch(`http://localhost:8080/users/`)
       .then((response) => response.json())
       .then((user) => {
-        console.log("FETCHED BOOK", users);
-        setUsers(users);
+        console.log("FETCHED USERS", user);
+        setUsers(user);
       });
   };
 
