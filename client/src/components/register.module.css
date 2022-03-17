@@ -1,8 +1,15 @@
 @import url("colors.css");
 
+.registerContainer{
+display: flex;
+flex-direction: column;
+}
+
 .registerContainer input {
+    
     border: solid 2px var(--color-secondary);
-    background: none;
+    background: rgba(255, 255, 255, 0.845);
+    margin: 3px;
 }
 
 ::placeholder {
@@ -14,4 +21,6 @@
     background-color:var(--color-highlight);
     border-radius: 3px;
     color:var(--color-font);
+    border: solid 2px var(--color-highlight);
+    margin:2px;
 }

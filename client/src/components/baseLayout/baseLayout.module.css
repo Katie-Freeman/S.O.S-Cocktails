@@ -1,6 +1,8 @@
 @import url("../colors.css");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
 
 .baseLayoutContainer {
+    font-family: 'Raleway', sans-serif;
     display: flex;
     flex-direction: column;
     background-color: black;
@@ -8,7 +10,7 @@
 }
 
 .baseLayoutContainer h1, h2 {
-    font-family: "Vibur", sans-serif;
+    font-family: 'Raleway', sans-serif;
     color: var(--color-secondary);
     text-shadow:
         0 0 7px #ec86dee0,

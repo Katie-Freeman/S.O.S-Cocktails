@@ -55,7 +55,6 @@ const RecommendationCard = ({ recommendation }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          
         }
       );
       const responseJson = await response.json();
