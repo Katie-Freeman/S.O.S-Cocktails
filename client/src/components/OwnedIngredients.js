@@ -8,17 +8,17 @@ const OwnedIngredients = ({ ingredients, isLoading }) => {
     setUserIngredients(ingredients);
   }, [ingredients]);
 
-  // const getUserIngredients = () => {
-  //   const id = localStorage.getItem("userId");
-  //   fetch(`http://localhost:8080/users/${id}/ingredients`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((ownedIngredients) => setUserIngredients(ownedIngredients));
-  // };
+  const getUserIngredients = () => {
+    const id = localStorage.getItem("userId");
+    fetch(`http://localhost:8080/users/${id}/ingredients`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((ownedIngredients) => setUserIngredients(ownedIngredients));
+  };
   return !ingredients ? (
     <p>Loading...</p>
   ) : (
@@ -31,4 +31,4 @@ const OwnedIngredients = ({ ingredients, isLoading }) => {
   );
 };
 
-export default OwnedIngredients;
+export default OwnedIngredients; 

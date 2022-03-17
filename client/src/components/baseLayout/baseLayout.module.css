@@ -1,8 +1,8 @@
 .baseLayoutContainer {
     display: flex;
     flex-direction: column;
-    background-color: #ebe6de;
-    color: #966345;
+    background-color: black;
+    color:#ec86de;
     align-items: center;
    
 }

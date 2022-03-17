@@ -27,12 +27,11 @@ function Login(props) {
         console.log("LOGING IN", result);
         if (result.success) {
           const token = result.token;
-          console.log("USER", user);
           localStorage.setItem("username", user.username);
           localStorage.setItem("userId", result.user.id);
           localStorage.setItem("jsonwebtoken", token);
           props.onLogin(token);
-          navigate("/");
+          navigate(`/users/${result.user.id}/profile`);
         } else {
         }
       });

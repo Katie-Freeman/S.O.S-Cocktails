@@ -183,13 +183,30 @@ app.delete("/users/:id/ingredients", (req, res) => {
 });
 
 app.post('/users/:id/recommendations', async (req, res) => {
+  try {
   const { id } = req.params;
+  const user = await models.User.findByPk(id);
+  const userIngredients = await user.getIngredients();
+  const userIngredientIds = userIngredients.map(ingredient => ingredient.id);
+  const drinksUserCanMake = []
+  const allDrinks = await models.Drink.findAll({ include: models.Ingredient});
 
-  const user = await models.User.findByPk(id)
-  const ingredients = await user.getIngredients();
-
-
+  if (userIngredientIds.length > 0) {
+  allDrinks.forEach(drink => {
+   const drinkIngredientIds = (drink.Ingredients.map(i => i.id));
+    const hasAllIngredients = drinkIngredientIds.every(i => userIngredientIds.includes(i))
+    if (hasAllIngredients) {
+      drinksUserCanMake.push(drink)
+    }
+  })
+  }
+  return res.json({ recommendations: drinksUserCanMake });
+  } catch (error) {
+    console.log('ERROR', error)
+  }
 })
+
+/* testing things */
 
 app.listen(8080, () => {
   console.log("Server is running ....");

@@ -71,7 +71,7 @@ const IngredientCard = ({
   const ownedIngredientIds = userIngredients.map((ingredient) => ingredient.id);
   const isOwned = ownedIngredientIds.includes(ingredient.id);
 
-  const selectIngredient = (ingredientId) => {
+  const addIngredient = (ingredientId) => {
     const userId = localStorage.getItem("userId");
     fetch(`http://localhost:8080/users/${userId}/add-ingredients`, {
       method: "POST",
@@ -125,7 +125,7 @@ const IngredientCard = ({
         onClick={
           isOwned
             ? () => deleteIngredient(ingredient.id)
-            : () => selectIngredient(ingredient.id)
+            : () => addIngredient(ingredient.id)
         }
       >
         {isOwned ? "✖️" : "✔"}️

@@ -7,10 +7,15 @@
 .searchInput {
    background: none;
    border: none; 
-   border-bottom: 1px solid rgba(99, 90, 44, 0.50);
+   border-bottom: 1px solid #ec86de;
    padding: 5px;
    margin: 2em 0;
    outline: none;
+   color: #fff;
+}
+
+::-webkit-input-placeholder {
+    color: #ec86de;
 }
 
 .ingredientGrid {
@@ -24,7 +29,7 @@
     display: flex;
     border: 1px solid #fefefe;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
-    border: 1px solid rgba(99, 90, 44, 0.50);
+    border: 1px solid #41c6e4;
     height: 50px;
     width: 150px;
     margin: 1em;
@@ -62,7 +67,7 @@
 
 /* OwnedIngredients styles */
 .ingredientTag {
-    background:rgb(99, 90, 44); 
+    background:#41c6e4; 
     color: #fff;
     font-weight: bold;
     padding: 10px;
