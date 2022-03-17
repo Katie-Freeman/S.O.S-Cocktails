@@ -3,23 +3,29 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore, compose, applyMiddleware } from "redux";
+import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import reducer from "./store/reducer";
+import authReducer from "./store/authReducer";
+import guestReducer from "./store/guestReducer";
 import thunk from "redux-thunk";
-import BaseLayout from "./components/BaseLayout";
+import BaseLayout from "./components/baseLayout/BaseLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Drinks from "./components/Drinks";
-import Ingredients from "./components/Ingredients";
 import Profile from "./components/Profile";
 import Logout from "./components/Logout";
+import Recommendations from "./components/Recommendations";
+import ProtectedRoute from "./components/ProtectedRoute";
 
+const rootReducer = combineReducers({
+  authReducer,
+  guestReducer
+})
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 const token = localStorage.getItem("jsonwebtoken");
 store.dispatch({ type: "ON_LOGIN", payload: token });
@@ -34,9 +40,9 @@ ReactDOM.render(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/drinks" element={<Drinks />} />
-            <Route path="/ingredients" element={<Ingredients />} />
-            <Route path="/users" element={<Profile />} />
-            <Route path="/logout" element={<Logout />} />
+            <Route path="/users/:id/recommendations"element={<Recommendations />}/>
+            <Route path="/users/:id/profile" element={<ProtectedRoute> <Profile /> </ProtectedRoute>}/>
+            <Route path="/logout" element={<ProtectedRoute><Logout /></ProtectedRoute>} />
           </Routes>
         </BaseLayout>
       </BrowserRouter>

@@ -1,6 +1,6 @@
-import Menu from "./Menu";
+import Menu from "../Menu";
 import styles from './baseLayout.module.css'
-import Footer from "./Footer";
+import Footer from "../Footer";
 
 function BaseLayout(props) {
   return (
