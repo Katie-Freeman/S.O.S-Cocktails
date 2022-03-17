@@ -1,3 +1,5 @@
+@import url("colors.css");
+
 .recContainer {
     display: flex;
     flex-direction: column;
@@ -10,7 +12,8 @@
     flex-direction: column;
     padding: 1.5em;
     margin: 1em;
-    background: var(--color-font);
-    box-shadow: 0px 2px 4px var(--color-bg);
+    background: rgb(32, 32, 32);
+    box-shadow: 4px 4px 4px #41c6e4af;
     border: 1px solid var(--color-secondary);
+    color: var(--color-font);
 } 

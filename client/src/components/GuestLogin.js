@@ -1,6 +1,7 @@
 
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styles from "../components/login.module.css"
 
 
 function GuestLogin(props) {
@@ -37,7 +38,7 @@ const handleGuestLogin = () => {
   };
 
   return (
-    <div className="login container">
+    <div className={styles.logout}>
       <button onClick={handleGuestLogin}>Try as a guest</button>
     </div>
   );

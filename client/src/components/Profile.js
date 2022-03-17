@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 import IngredientSearch from "./IngredientSearch";
-import Recommendations from "./Recommendations";
+import styles from "./profile.module.css";
+
 
 function Profile(props) {
 const username= localStorage.getItem("username")
 
   return (
-    <div>
+    <div className={styles.profileContainer}>
       <h1>Trader {username}'s</h1>
       <div>
         <IngredientSearch />
