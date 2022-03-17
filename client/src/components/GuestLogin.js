@@ -23,13 +23,11 @@ const handleGuestLogin = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("LOGING IN AS GUEST", result);
         if (result.success) {
           const token = result.token;
           localStorage.setItem("username", result.user.username);
           localStorage.setItem("userId", result.user.id);
           localStorage.setItem("jsonwebtoken", token);
-          localStorage.setItem("isGuest", true)
           props.onLogin(token);
           navigate(`/users/${result.user.id}/profile`);
         } else {
@@ -46,7 +44,7 @@ const handleGuestLogin = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogin: (token) => dispatch({ type: "ON_GUEST_LOGIN", payload: token }),
+    onLogin: (token) => dispatch({ type: "ON_AUTH", payload: token }),
   };
 };
 

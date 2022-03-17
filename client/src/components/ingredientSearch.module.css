@@ -29,12 +29,14 @@
 .ingredientCard {
     font-size: 12px;
     display: flex;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
-    border: 1px solid var(--color-secondary);
+    box-shadow: 4px 4px 4px #ec86ded9;
     height: 50px;
     width: 150px;
     margin: 1em;
     color: var(--color-font);
+    font-weight: 700;
+    font-size: small;
+    background-color: #202020;
 }
 
 .ingredientCard span {
@@ -52,8 +54,9 @@
 
 .ingredientCard button:hover {
     cursor: pointer;
-    background: rgb(50, 153, 84);
+    background: #00ff68;
     color: var(--color-font);
+    
 }
 
 .ingredientCard.owned button:hover {
@@ -63,16 +66,9 @@
 }
 
 .owned {
-    background: rgb(50, 153, 84);
+    background: #01c750;
     color: var(--color-font);
-}
-
-/* OwnedIngredients styles */
-.ingredientTag {
-    background:var(--color-highlight); 
-    color: var(--color-font);
-    font-weight: bold;
-    padding: 10px;
-    margin-right: 1em;
-    margin-bottom: 1em;
+    font-weight: 700;
+    font-size: small;
+   
 }

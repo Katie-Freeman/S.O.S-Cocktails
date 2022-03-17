@@ -219,76 +219,49 @@ app.post('/users/:id/recommendations', async (req, res) => {
   }
 })
 
-// app.post("/users/:id/recommendations", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const user = await models.User.findByPk(id);
-//     const userIngredients = await user.getIngredients();
-//     const userIngredientIds = userIngredients.map((ingredient) => ingredient.id);
-//     const drinksUserCanMake = [];
-//     const allDrinks = await models.Drink.findAll({include: models.Ingredient,});
-
-//     if (userIngredientIds.length > 0) {
-//       allDrinks.forEach((drink) => {
-//         const drinkIngredientIds = drink.Ingredients.map((i) => i.id);
-//         const hasAllIngredients = drinkIngredientIds.every((i) =>
-//           userIngredientIds.includes(i)
-//         );
-//         console.log({ drink: drink.name, hasAllIngredients });
-//         if (hasAllIngredients) {
-//           drinksUserCanMake.push(drink);
-//         }
-//       });
-//     }
-//     return res.json({ recommendations: drinksUserCanMake });
-//   } catch (error) {
-//     console.log("ERROR", error);
-//   }
-// });
-
-app.post("/users/:id/favorites", async (req, res) => {
+app.post('/users/:id/favorites', async (req, res) => {
   try {
     const { id: userId } = req.params;
     const { drinkId } = req.body;
-    console.log("DRINK ID", drinkId);
-    const user = await models.User.findByPk(userId);
+    const user = await models.User.findByPk(userId)
     const success = await user.addDrinks([drinkId]);
     if (success) {
-      return res.json({ success: true });
+      return res.json({ success: true, })
     }
-  } catch (error) {
-    return res.json(error);
+  } catch(error) {
+    return res.json(error)
   }
-});
+})
 
-app.post("/users/:id/get-favorites", async (req, res) => {
+app.post('/users/:id/get-favorites', async (req, res) => {
   try {
     const { id: userId } = req.params;
     const user = await models.User.findByPk(userId);
-    console.log("USER...", user)
     const favorites = await user.getDrinks();
-    console.log("FAVORITES", favorites)
+    
     if (favorites) {
-      return res.json({ success: true, favorites });
+      return res.json({ success: true, favorites })
     }
-  } catch (error) {
-    return res.json(error);
+  } catch(error) {
+      console.log("ERROR MESSAGE", error);
+    return res.json(error)
+  
   }
-});
+})
 
-app.delete("/users/:id/favorites", async (req, res) => {
+app.delete('/users/:id/favorites', async (req, res) => {
   try {
     const { id: userId } = req.params;
     const { drinkId } = req.body;
     const user = await models.User.findByPk(userId);
     const success = await user.removeDrinks([drinkId]);
     if (success) {
-      return res.json({ success: true });
+      return res.json({ success: true })
     }
-  } catch (error) {
-    return res.json(error);
+  } catch(error) {
+    return res.json(error)
   }
-});
+})
 
 app.listen(process.env.PORT || 8080, () => {
   console.log("Server is running ....");

@@ -1,4 +1,5 @@
 import React from "react";
+import Favorites from "./Favorites";
 import IngredientSearch from "./IngredientSearch";
 import styles from "./profile.module.css";
 
@@ -12,9 +13,7 @@ const username= localStorage.getItem("username")
       <div>
         <IngredientSearch />
       </div>
-      <div>
-        <h2>Favorites!</h2>
-      </div>
+    <Favorites/>
     </div>
   ); 
 }

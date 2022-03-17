@@ -3,10 +3,9 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import authReducer from "./store/authReducer";
-import guestReducer from "./store/guestReducer";
 import thunk from "redux-thunk";
 import BaseLayout from "./components/baseLayout/BaseLayout";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -18,14 +17,10 @@ import Logout from "./components/Logout";
 import Recommendations from "./components/Recommendations";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-const rootReducer = combineReducers({
-  authReducer,
-  guestReducer
-})
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(authReducer, composeEnhancers(applyMiddleware(thunk)));
 
 const token = localStorage.getItem("jsonwebtoken");
 store.dispatch({ type: "ON_LOGIN", payload: token });

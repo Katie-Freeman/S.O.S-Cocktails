@@ -25,7 +25,7 @@ const OwnedIngredients = ({ ingredients, isLoading }) => {
     <div className={styles.ownedIngredients}>
       <h2>Owned Ingredients:</h2>
       {userIngredients.map((ingredient) => (
-        <span className={styles.ingredientTag}>{ingredient.name}</span>
+        <span key= {ingredient.id} className={styles.ingredientTag}>{ingredient.name}</span>
       ))}
     </div>
   );

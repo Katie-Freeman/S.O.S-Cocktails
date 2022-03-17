@@ -1,17 +1,15 @@
 @import url("colors.css");
 
-.footerContainer {
-padding: 0;
-}
-
 .footer {
-background-color:#ebe6de;
-position: fixed;
+display: flex;
+background-color:#202225;
 width: 100%;
 bottom: 0;
+justify-content: center;
 }
 
 .footer a {
     color: #59511e;
     font-size: 25px; 
+    ;
 }

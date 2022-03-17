@@ -22,7 +22,6 @@ const Recommendations = () => {
       const recs = await response.json();
 
       if (recs) {
-        console.log("RECS", recs);
         setRecommendations(recs.recommendations);
       }
     } catch (error) {
@@ -36,7 +35,7 @@ const Recommendations = () => {
     <div className={styles.recContainer}>
       <h2>Drinks You Can Make</h2>
       {recommendations.map((r) => (
-        <RecommendationCard recommendation={r} />
+        <RecommendationCard recommendation={r} key={r.id} />
       ))}
     </div>
   );
@@ -58,7 +57,6 @@ const RecommendationCard = ({ recommendation }) => {
         }
       );
       const responseJson = await response.json();
-      console.log(responseJson);
 
       if (responseJson) {
         const favoriteIds = responseJson.favorites.map((f) => f.id);
@@ -90,7 +88,6 @@ const RecommendationCard = ({ recommendation }) => {
         }
       );
       const responseJson = await response.json();
-      console.log(responseJson);
 
       if (responseJson) {
         setIsFavorite(!isFavorite);
@@ -104,7 +101,7 @@ const RecommendationCard = ({ recommendation }) => {
       <h3>{recommendation.name}</h3>
       <ul>
         {recommendation.recipe.ingredients.map((i) => (
-          <li>
+          <li key={i.item}>
             {i.item} ({i.amount})
           </li>
         ))}
