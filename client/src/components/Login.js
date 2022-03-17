@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import GuestLogin from "./GuestLogin";
+import styles from "./login.module.css";
 
 function Login(props) {
   const [user, setUser] = useState({});
@@ -38,22 +39,26 @@ function Login(props) {
   };
 
   return (
-    <div className="login container">
+    <div>
       <h1>Login</h1>
-      <input
-        type="text"
-        onChange={handleTextChange}
-        placeholder="Enter Username"
-        name="username"
-      />
-      <input
-        type="password"
-        onChange={handleTextChange}
-        placeholder="Enter Password"
-        name="password"
-      />
-      <button onClick={handleLogin}>Login</button>
-      <GuestLogin/>
+      <div className={styles.loginContainer}>
+        <input
+          type="text"
+          onChange={handleTextChange}
+          placeholder="Enter Username"
+          name="username"
+        />
+        <input
+          type="password"
+          onChange={handleTextChange}
+          placeholder="Enter Password"
+          name="password"
+        />
+        <div className={styles.button}>
+        <button onClick={handleLogin}>Login</button>
+        <GuestLogin />
+        </div>
+      </div>
     </div>
   );
 }

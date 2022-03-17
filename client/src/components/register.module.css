@@ -1,15 +1,17 @@
+@import url("colors.css");
+
 .registerContainer input {
-    border: solid 2px #966345;
+    border: solid 2px var(--color-secondary);
     background: none;
 }
 
 ::placeholder {
-    color: #59511e;
+    color: var(--color-secondary);
 
 }
 
 .registerContainer button {
-    background-color:#b1d6c9;
+    background-color:var(--color-highlight);
     border-radius: 3px;
-    color:#966345;
+    color:var(--color-font);
 }

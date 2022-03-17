@@ -7,12 +7,22 @@ const jwt = require("jsonwebtoken");
 const publicPath = path.join(__dirname, "..", "public");
 const app = express();
 const sequelize = require("sequelize");
+const authenticate = require('./middlware/authenticate')
 
 require("dotenv").config();
+
 
 app.use(express.json());
 app.use(cors());
 app.use(express.static(publicPath));
+
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname,'../client/build')))
+
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../', 'client', 'build', "index.html")))
+}else{
+  app.get('/', (res, req) => res.send('Please set to production'))
+}
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));
@@ -64,7 +74,10 @@ app.post("/login", (req, res) => {
     if (user) {
       bcrypt.compare(password, user.password, (err, result) => {
         if (result) {
-          const token = jwt.sign({ username: user.username }, "SECRETKEY");
+          const token = jwt.sign(
+            { username: user.username },
+            process.env.JWTKEY
+          );
 
           res.json({ success: true, user: user, token: token });
         } else {
@@ -77,7 +90,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.post("/drinks", (req, res) => {
+app.post("/drinks", authenticate, (req, res) => {
   const name = req.body.name;
   const imgUrl = req.body.imgUrl;
   const recipe = req.body.recipe;
@@ -96,7 +109,7 @@ app.post("/drinks", (req, res) => {
     .catch((error) => res.json({ success: false, message: error }));
 });
 
-app.post("/ingredients", (req, res) => {
+app.post("/ingredients", authenticate, (req, res) => {
   const name = req.body.name;
   const type = req.body.type;
 
@@ -113,7 +126,7 @@ app.post("/ingredients", (req, res) => {
     .catch((error) => res.json({ success: false, message: error }));
 });
 
-app.post("/ingredients/search", (req, res) => {
+app.post("/ingredients/search", authenticate,(req, res) => {
   let query = req.body.query.toLowerCase();
 
   models.Ingredient.findAll({
@@ -137,7 +150,7 @@ app.post("/ingredients/search", (req, res) => {
     });
 });
 
-app.post("/users/:id/ingredients", (req, res) => {
+app.post("/users/:id/ingredients", authenticate, (req, res) => {
   const { id } = req.params;
 
   models.User.findByPk(id)
@@ -148,7 +161,7 @@ app.post("/users/:id/ingredients", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-app.post("/users/:id/add-ingredients", (req, res) => {
+app.post("/users/:id/add-ingredients", authenticate,(req, res) => {
   const { id } = req.params;
   const { ingredientId } = req.body;
 
@@ -165,7 +178,7 @@ app.post("/users/:id/add-ingredients", (req, res) => {
     .catch((error) => res.json(error));
 });
 
-app.delete("/users/:id/ingredients", (req, res) => {
+app.delete("/users/:id/ingredients", authenticate, (req, res) => {
   const { id } = req.params;
   const { ingredientId } = req.body;
 

@@ -1,10 +1,24 @@
+@import url("../colors.css");
+
 .baseLayoutContainer {
     display: flex;
     flex-direction: column;
     background-color: black;
-    color:#ec86de;
     align-items: center;
-   
+}
+
+.baseLayoutContainer h1, h2 {
+    font-family: "Vibur", sans-serif;
+    color: var(--color-secondary);
+    text-shadow:
+        0 0 7px #ec86dee0,
+        0 0 10px #ec86dee0,
+        0 0 21px #ec86dee0,
+        0 0 42px var(--color-highlight),
+        0 0 82px var(--color-highlight),
+        0 0 92px var(--color-highlight),
+        0 0 102px var(--color-highlight),
+        0 0 151px var(--color-highlight);
 }
 
 .logo {

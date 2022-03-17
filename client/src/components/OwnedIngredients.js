@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./ingredientSearch.module.css";
+import styles from "./ownedIngredients.module.css";
 
 const OwnedIngredients = ({ ingredients, isLoading }) => {
   const [userIngredients, setUserIngredients] = useState(ingredients);
@@ -22,7 +22,7 @@ const OwnedIngredients = ({ ingredients, isLoading }) => {
   return !ingredients ? (
     <p>Loading...</p>
   ) : (
-    <div>
+    <div className={styles.ownedIngredients}>
       <h2>Owned Ingredients:</h2>
       {userIngredients.map((ingredient) => (
         <span className={styles.ingredientTag}>{ingredient.name}</span>

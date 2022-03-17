@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./ingredientSearch.module.css";
 import OwnedIngredients from "./OwnedIngredients";
 
+
 const IngredientSearch = () => {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);

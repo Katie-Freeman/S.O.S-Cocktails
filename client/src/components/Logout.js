@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import Login from "./Login";
+import styles from "./login.module.css"
 
 
 
@@ -14,7 +15,7 @@ useEffect(() => {
   })
 
       return (
-        <div>
+        <div className={styles.logout}>
           <Login/>
         </div>
       );

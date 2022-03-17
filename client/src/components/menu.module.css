@@ -1,5 +1,6 @@
+@import url("colors.css");
 .menuContainer {
-    background-color: black;
+    background-color: var(--color-bg);
     display: flex;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: 600;
@@ -16,12 +17,11 @@
 }
 
 .menuOptions a {
-    color: #ec86de;
+    color: var(--color-secondary);
     font-size: large;
     text-align: center;
-    background-color: black;
+    background-color: var(--color-bg);
+    margin-right: 30px;
+    
 }
 
-.logo {
- width: 80px;
-}

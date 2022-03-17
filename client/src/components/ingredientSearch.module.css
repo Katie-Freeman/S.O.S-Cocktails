@@ -1,3 +1,5 @@
+@import url("colors.css");
+
 .searchContainer {
     display: flex;
     flex-direction: column;
@@ -7,15 +9,15 @@
 .searchInput {
    background: none;
    border: none; 
-   border-bottom: 1px solid #ec86de;
+   border-bottom: 1px solid var(--color-secondary);
    padding: 5px;
    margin: 2em 0;
    outline: none;
-   color: #fff;
+   color: var(--color-font);
 }
 
 ::-webkit-input-placeholder {
-    color: #ec86de;
+    color: var(--color-secondary);
 }
 
 .ingredientGrid {
@@ -27,12 +29,12 @@
 .ingredientCard {
     font-size: 12px;
     display: flex;
-    border: 1px solid #fefefe;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
-    border: 1px solid #41c6e4;
+    border: 1px solid var(--color-secondary);
     height: 50px;
     width: 150px;
     margin: 1em;
+    color: var(--color-font);
 }
 
 .ingredientCard span {
@@ -51,25 +53,26 @@
 .ingredientCard button:hover {
     cursor: pointer;
     background: rgb(50, 153, 84);
-    color: #fff;
+    color: var(--color-font);
 }
 
 .ingredientCard.owned button:hover {
     cursor: pointer;
     background: tomato;
-    color: #fff;
+    color: var(--color-font);
 }
 
 .owned {
     background: rgb(50, 153, 84);
-    color: #fff;
+    color: var(--color-font);
 }
 
 /* OwnedIngredients styles */
 .ingredientTag {
-    background:#41c6e4; 
-    color: #fff;
+    background:var(--color-highlight); 
+    color: var(--color-font);
     font-weight: bold;
     padding: 10px;
     margin-right: 1em;
+    margin-bottom: 1em;
 }

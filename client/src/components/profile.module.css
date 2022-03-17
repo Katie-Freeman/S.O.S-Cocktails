@@ -1,0 +1,14 @@
+@import url("colors.css");
+
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg);
+    color:var(--color-secondary);
+    align-items: center;
+   
+}
+
+::placeholder{
+    color: var(--color-secondary);
+}
