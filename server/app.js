@@ -19,14 +19,14 @@ app.use(express.static(publicPath));
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname,'../client/build')))
 
-  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../', 'client', 'build', "index.html")))
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, '../', 'client', 'build', "static", "index.html")))
 }else{
   app.get('/', (res, req) => res.send('Please set to production'))
 }
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(publicPath, "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(publicPath, "index.html"));
+// });
 
 app.post("/register", (req, res) => {
   const username = req.body.username;
@@ -90,7 +90,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.post("/drinks", authenticate, (req, res) => {
+app.post("/drinks", (req, res) => {
   const name = req.body.name;
   const imgUrl = req.body.imgUrl;
   const recipe = req.body.recipe;
@@ -109,7 +109,7 @@ app.post("/drinks", authenticate, (req, res) => {
     .catch((error) => res.json({ success: false, message: error }));
 });
 
-app.post("/ingredients", authenticate, (req, res) => {
+app.post("/ingredients", (req, res) => {
   const name = req.body.name;
   const type = req.body.type;
 
@@ -126,7 +126,7 @@ app.post("/ingredients", authenticate, (req, res) => {
     .catch((error) => res.json({ success: false, message: error }));
 });
 
-app.post("/ingredients/search", authenticate,(req, res) => {
+app.post("/ingredients/search",(req, res) => {
   let query = req.body.query.toLowerCase();
 
   models.Ingredient.findAll({
@@ -150,7 +150,7 @@ app.post("/ingredients/search", authenticate,(req, res) => {
     });
 });
 
-app.post("/users/:id/ingredients", authenticate, (req, res) => {
+app.post("/users/:id/ingredients", (req, res) => {
   const { id } = req.params;
 
   models.User.findByPk(id)
@@ -161,7 +161,7 @@ app.post("/users/:id/ingredients", authenticate, (req, res) => {
     .catch((error) => console.log(error));
 });
 
-app.post("/users/:id/add-ingredients", authenticate,(req, res) => {
+app.post("/users/:id/add-ingredients", (req, res) => {
   const { id } = req.params;
   const { ingredientId } = req.body;
 
@@ -178,7 +178,7 @@ app.post("/users/:id/add-ingredients", authenticate,(req, res) => {
     .catch((error) => res.json(error));
 });
 
-app.delete("/users/:id/ingredients", authenticate, (req, res) => {
+app.delete("/users/:id/ingredients", (req, res) => {
   const { id } = req.params;
   const { ingredientId } = req.body;
 
@@ -219,8 +219,77 @@ app.post('/users/:id/recommendations', async (req, res) => {
   }
 })
 
-/* testing things */
+// app.post("/users/:id/recommendations", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const user = await models.User.findByPk(id);
+//     const userIngredients = await user.getIngredients();
+//     const userIngredientIds = userIngredients.map((ingredient) => ingredient.id);
+//     const drinksUserCanMake = [];
+//     const allDrinks = await models.Drink.findAll({include: models.Ingredient,});
 
-app.listen(8080, () => {
+//     if (userIngredientIds.length > 0) {
+//       allDrinks.forEach((drink) => {
+//         const drinkIngredientIds = drink.Ingredients.map((i) => i.id);
+//         const hasAllIngredients = drinkIngredientIds.every((i) =>
+//           userIngredientIds.includes(i)
+//         );
+//         console.log({ drink: drink.name, hasAllIngredients });
+//         if (hasAllIngredients) {
+//           drinksUserCanMake.push(drink);
+//         }
+//       });
+//     }
+//     return res.json({ recommendations: drinksUserCanMake });
+//   } catch (error) {
+//     console.log("ERROR", error);
+//   }
+// });
+
+app.post("/users/:id/favorites", async (req, res) => {
+  try {
+    const { id: userId } = req.params;
+    const { drinkId } = req.body;
+    console.log("DRINK ID", drinkId);
+    const user = await models.User.findByPk(userId);
+    const success = await user.addDrinks([drinkId]);
+    if (success) {
+      return res.json({ success: true });
+    }
+  } catch (error) {
+    return res.json(error);
+  }
+});
+
+app.post("/users/:id/get-favorites", async (req, res) => {
+  try {
+    const { id: userId } = req.params;
+    const user = await models.User.findByPk(userId);
+    console.log("USER...", user)
+    const favorites = await user.getDrinks();
+    console.log("FAVORITES", favorites)
+    if (favorites) {
+      return res.json({ success: true, favorites });
+    }
+  } catch (error) {
+    return res.json(error);
+  }
+});
+
+app.delete("/users/:id/favorites", async (req, res) => {
+  try {
+    const { id: userId } = req.params;
+    const { drinkId } = req.body;
+    const user = await models.User.findByPk(userId);
+    const success = await user.removeDrinks([drinkId]);
+    if (success) {
+      return res.json({ success: true });
+    }
+  } catch (error) {
+    return res.json(error);
+  }
+});
+
+app.listen(process.env.PORT || 8080, () => {
   console.log("Server is running ....");
 });

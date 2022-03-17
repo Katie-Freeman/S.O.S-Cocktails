@@ -10,7 +10,7 @@ function Menu(props) {
       {/* <img className={styles.logo} src={require("../images/Logo.png")} /> */}
       <div className={styles.menuOptions}>
         {props.isLoggedIn ? <NavLink to={`/users/${userId}/profile`}>Profile</NavLink> : null}
-        {props.isLoggedIn ? <NavLink to="/ingredients">Ingredients</NavLink> : null}
+        {props.isLoggedIn ? <NavLink to="/drinks">Ingredients</NavLink> : null}
         {props.isLoggedIn ? <NavLink to={`/users/${userId}/recommendations`}> Recommendations</NavLink> : null}
         {!props.isLoggedIn ? <NavLink to="/login">Login</NavLink> : null}
         {!props.isLoggedIn ? <NavLink to="/register">Register</NavLink> : null}

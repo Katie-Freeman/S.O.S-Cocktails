@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import Heart from "react-animated-heart";
 import styles from "./recommendations.module.css";
 
 const Recommendations = () => {
@@ -25,7 +26,7 @@ const Recommendations = () => {
         setRecommendations(recs.recommendations);
       }
     } catch (error) {
-      console.log("ERROR MESSAGE",error);
+      console.log(error);
     }
   };
 
@@ -42,11 +43,68 @@ const Recommendations = () => {
 };
 
 const RecommendationCard = ({ recommendation }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const userId = localStorage.getItem("userId");
+
+  const getUserFavorites = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/users/${userId}/get-favorites`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          
+        }
+      );
+      const responseJson = await response.json();
+      console.log(responseJson);
+
+      if (responseJson) {
+        const favoriteIds = responseJson.favorites.map((f) => f.id);
+        if (favoriteIds.includes(recommendation.id)) {
+          setIsFavorite(true);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+  useEffect(() => {
+    getUserFavorites();
+  }, [recommendation, getUserFavorites]);
+
+  const handleFavoriteClick = async () => {
+    try {
+      const method = isFavorite ? "DELETE" : "POST";
+      const response = await fetch(
+        `http://localhost:8080/users/${userId}/favorites`,
+        {
+          method: method,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            drinkId: recommendation.id,
+          }),
+        }
+      );
+      const responseJson = await response.json();
+      console.log(responseJson);
+
+      if (responseJson) {
+        setIsFavorite(!isFavorite);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className={styles.recCard}>
       <h3>{recommendation.name}</h3>
       <ul>
-        {recommendation.recipe.ingredients.map((i)=> (
+        {recommendation.recipe.ingredients.map((i) => (
           <li>
             {i.item} ({i.amount})
           </li>
@@ -54,6 +112,7 @@ const RecommendationCard = ({ recommendation }) => {
       </ul>
       <h4>Instructions</h4>
       <p>{recommendation.recipe.instructions}</p>
+      <Heart isClick={isFavorite} onClick={handleFavoriteClick} />
     </div>
   );
 };
