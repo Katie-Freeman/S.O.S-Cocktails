@@ -221,6 +221,6 @@ app.post('/users/:id/recommendations', async (req, res) => {
 
 /* testing things */
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log("Server is running ....");
 });
