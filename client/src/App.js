@@ -5,7 +5,7 @@ import Login from "./components/Login";
 function App() {
   return (
     <div className="App">
-      <img src={require("./images/logo.gif")} width= "300" alt="logo"/>
+      <img src={require("./images/logo.gif")} alt="logo"/>
       <Login />
     </div>
   );
