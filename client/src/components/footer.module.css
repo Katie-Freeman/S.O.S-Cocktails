@@ -4,12 +4,13 @@
 display: flex;
 background-color:#202225;
 width: 100%;
+position: fixed;
 bottom: 0;
 justify-content: center;
+margin-top: 2em;
 }
 
 .footer a {
     color: #59511e;
-    font-size: 25px; 
-    ;
+    width: 20px;
 }

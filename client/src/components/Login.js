@@ -39,9 +39,8 @@ function Login(props) {
   };
 
   return (
-    <div>
+    <div className={styles.loginContainer}>
       <h1>Login</h1>
-      <div className={styles.loginContainer}>
         <input
           type="text"
           onChange={handleTextChange}
@@ -55,10 +54,9 @@ function Login(props) {
           name="password"
         />
         <div className={styles.button}>
-        <button onClick={handleLogin}>Login</button>
-        <GuestLogin />
+          <button onClick={handleLogin}>Login</button>
+          <GuestLogin />
         </div>
-      </div>
     </div>
   );
 }

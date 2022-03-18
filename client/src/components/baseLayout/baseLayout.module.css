@@ -7,6 +7,9 @@
     flex-direction: column;
     background-color: black;
     align-items: center;
+    padding: 0;
+    width: 100vw;
+    margin-bottom: 4em;
     
 }
 
@@ -24,7 +27,7 @@
         0 0 151px var(--color-highlight); */
 }
 
-.logo {
+/* .logo {
     width:300px;
     
-}
+} */

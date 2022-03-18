@@ -1,31 +1,27 @@
 @import url("colors.css");
+
 .menuContainer {
     background-color: #202225;
     display: flex;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: 600;
-    
     justify-content: center;  
     width: 100%;
 }
 
-.menuOptions {
-    margin: 0 20px 0px 20px;
-    display: flex;
-    align-items: center;
-    
-}
 
-.menuOptions img{
+
+.menuContainer img{
     margin-right: 2em;
 }
 
-.menuOptions a {
+.menuContainer a {
     color: var(--color-secondary);
-    font-size: large;
     text-align: center;
     background-color: #202225;
     margin-right: 30px;
+    margin-top: 50px;
+    font-size: large;
     
 }
 

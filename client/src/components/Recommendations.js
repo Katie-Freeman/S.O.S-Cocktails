@@ -99,6 +99,7 @@ const RecommendationCard = ({ recommendation }) => {
   return (
     <div className={styles.recCard}>
       <h3>{recommendation.name}</h3>
+      <div className={styles.ingredientImage}>
       <ul>
         {recommendation.recipe.ingredients.map((i) => (
           <li key={i.item}>
@@ -106,6 +107,8 @@ const RecommendationCard = ({ recommendation }) => {
           </li>
         ))}
       </ul>
+      <img src={recommendation.imageUrl} alt="../images/clink.png" />
+      </div>
       <h4>Instructions</h4>
       <p>{recommendation.recipe.instructions}</p>
       <Heart isClick={isFavorite} onClick={handleFavoriteClick} />

@@ -7,12 +7,10 @@ function Menu(props) {
   console.log(props)
   return (
     <div className={styles.menuContainer}>
-      <div className={styles.menuOptions}>
         <img src={require("../images/clink.png")} height= {70} alt="logo" />
         {props.isLoggedIn ? (
           <NavLink to={`/users/${userId}/profile`}>Profile</NavLink>
         ) : null}
-        {props.isLoggedIn ? <NavLink to="/drinks">Ingredients</NavLink> : null}
         {props.isLoggedIn ? (
           <NavLink to={`/users/${userId}/recommendations`}>
             {" "}
@@ -22,7 +20,6 @@ function Menu(props) {
         {!props.isLoggedIn ? <NavLink to="/">Login</NavLink> : null}
         {!props.isLoggedIn ? <NavLink to="/register">Register</NavLink> : null}
         {props.isLoggedIn ? <NavLink to="/logout">Logout</NavLink> : null}
-      </div>
     </div>
   );
 }

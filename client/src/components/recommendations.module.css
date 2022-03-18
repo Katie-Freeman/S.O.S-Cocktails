@@ -17,3 +17,22 @@
     border: 1px solid var(--color-secondary);
     color: var(--color-font);
 } 
+
+.recCard img {
+    width: 300px;
+}
+
+.ingredientImage {
+    display: flex;
+    padding: 0;
+    align-content: space-around;
+
+}
+
+.ingredientImage img {
+    margin-left: 25%;
+}
+
+.ingredientImage li {
+    margin-bottom: 1em;
+}
