@@ -26,7 +26,7 @@ function Register(props) {
 
   return (
     <div className={styles.registerContainer}>
-      <img src={require("../images/logo.gif")} alt="logo" />
+      <img src={require("../images/logo.gif")} width="300" alt="logo" />
       <h1>Register</h1>
       <input
         type="text"
