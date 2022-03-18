@@ -1,15 +1,22 @@
-.ownedIngredient {
+.ownedIngredients {
     display: flex;
-    background:var(--color-highlight); 
-    color: var(--color-font);
+    flex-wrap: wrap;
+    background:var(--color-bg); 
+    color: var(--color-secondary);
     padding: 10px;
     margin-right: 1em;
     margin-bottom: 1em;
-
 }
 
 .ingredientTag {
-display: flex;
-font-weight: 700;
-font-size: 16px;
+    font-size: 16px;
+    box-shadow: 4px 4px 4px #ec86ded9;
+    margin: 1em;
+    color: var(--color-font);
+    background-color: #202020;
+    padding:1em;
+   
 }
+
+
+

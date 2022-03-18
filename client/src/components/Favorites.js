@@ -39,13 +39,16 @@ const FavoritesCard = ({ favorite }) => {
   return (
     <div className={styles.recCard}>
       <h3>{favorite.name}</h3>
-      <ul>
-        {favorite.recipe.ingredients.map((i) => (
-          <li key={i.item}>
-            {i.item} ({i.amount})
-          </li>
-        ))}
-      </ul>
+      <div className={styles.ingredientImage}>
+        <ul>
+          {favorite.recipe.ingredients.map((i) => (
+            <li key={i.item}>
+              {i.item} ({i.amount})
+            </li>
+          ))}
+        </ul>
+        <img src={favorite.imageUrl} alt="../images/clink.png" />
+      </div>
       <h4>Instructions</h4>
       <p>{favorite.recipe.instructions}</p>
     </div>
