@@ -17,7 +17,7 @@ export const Favorites = () => {
       },
     })
     const responseJson = await response.json()
-    console.log("RESPONSEJSON",responseJson)
+    
     if(responseJson) {
       setFavorites(responseJson.favorites)
     }

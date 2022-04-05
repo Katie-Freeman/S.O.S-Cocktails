@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .loginContainer h1 {
@@ -13,7 +12,8 @@ text-align: center;
 }
 
 .loginContainer input {
-    border: solid 2px var(--color-highlight);background: rgba(255, 255, 255, 0.845);
+    border: solid 2px var(--color-highlight);
+    background: rgba(255, 255, 255, 0.845);
     margin: 3px;
 }
 

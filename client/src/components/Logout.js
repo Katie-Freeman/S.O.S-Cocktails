@@ -12,7 +12,6 @@ useEffect(() => {
     localStorage.removeItem("jsonwebtoken");
     localStorage.removeItem("username");
     props.onLogOut();
-    console.log("LOGGING OUT")
   })
 
       return (

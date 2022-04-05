@@ -25,7 +25,6 @@ function Login(props) {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log("LOGING IN", result);
         if (result.success) {
           const token = result.token;
           localStorage.setItem("username", user.username);

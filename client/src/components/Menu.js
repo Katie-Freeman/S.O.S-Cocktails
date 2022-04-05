@@ -4,7 +4,6 @@ import styles from "./menu.module.css";
 
 function Menu(props) {
   const userId = localStorage.getItem("userId");
-  console.log(props)
   return (
     <div className={styles.menuContainer}>
         <img src={require("../images/clink.png")} height= {70} alt="logo" />
@@ -25,7 +24,6 @@ function Menu(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     isLoggedIn: state.isAuthenticated,
   };

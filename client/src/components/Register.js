@@ -19,8 +19,7 @@ function Register(props) {
       body: JSON.stringify(user),
     })
       .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
+      .then((result) => {;
       });
   };
 

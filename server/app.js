@@ -13,7 +13,7 @@ require("dotenv").config();
 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.static(publicPath));
 
 if(process.env.NODE_ENV === 'production') {
